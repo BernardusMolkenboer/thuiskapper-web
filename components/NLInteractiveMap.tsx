@@ -86,7 +86,6 @@ function blobToDataUrl(blob: Blob): Promise<string> {
 }
 
 async function getFaviconDataUrl(): Promise<string> {
-  // Use same-origin fetch -> convert to base64 data URL
   const res = await fetch("/favicon.png", { cache: "force-cache" });
   if (!res.ok) throw new Error("Failed to fetch /favicon.png");
   const blob = await res.blob();
@@ -94,9 +93,9 @@ async function getFaviconDataUrl(): Promise<string> {
 }
 
 function svgPinDataUrl(faviconDataUrl: string) {
-  // Embed the favicon data directly inside the SVG (no external request)
+  // Use xlink:href for maximum compatibility inside SVG <image>
   const svg = `
-  <svg xmlns="http://www.w3.org/2000/svg" width="54" height="54" viewBox="0 0 54 54">
+  <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="54" height="54" viewBox="0 0 54 54">
     <defs>
       <filter id="shadow" x="-50%" y="-50%" width="200%" height="200%">
         <feDropShadow dx="0" dy="10" stdDeviation="6" flood-color="#111827" flood-opacity="0.18"/>
@@ -122,7 +121,7 @@ function svgPinDataUrl(faviconDataUrl: string) {
     </g>
 
     <g clip-path="url(#clip)">
-      <image href="${faviconDataUrl}" x="16" y="16" width="22" height="22" preserveAspectRatio="xMidYMid slice"/>
+      <image xlink:href="${faviconDataUrl}" x="16" y="16" width="22" height="22" preserveAspectRatio="xMidYMid slice"/>
     </g>
   </svg>`.trim();
 
@@ -187,7 +186,6 @@ export default function NLInteractiveMap({
         stylers: [{ color: "#d1d5db" }, { weight: 1 }],
       },
 
-      // Keep city labels subtle (optional)
       {
         featureType: "administrative.locality",
         elementType: "labels.text.fill",
@@ -279,7 +277,7 @@ export default function NLInteractiveMap({
             position: { lat: city.lat, lng: city.lng },
             title: city.name,
             icon,
-            optimized: true,
+            optimized: false, // ✅ important: makes SVG/data-uri markers far more reliable
             zIndex: 10,
           });
 
@@ -326,7 +324,6 @@ export default function NLInteractiveMap({
         </div>
       )}
 
-      {/* Only ONE helpful hint (removed the "Marker: ..." pill) */}
       <div className="absolute bottom-3 left-3 right-3 flex flex-wrap gap-2 pointer-events-none">
         <span className="inline-flex items-center gap-2 text-xs bg-white/90 border border-gray-200 rounded-full px-3 py-1 text-gray-700">
           <span className="w-2 h-2 rounded-full bg-emerald-500" />

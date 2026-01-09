@@ -10,6 +10,7 @@
   "/thuiskapper-amsterdam/page": "app/thuiskapper-amsterdam/page.js",
   "/thuiskapper-breda/page": "app/thuiskapper-breda/page.js",
   "/thuiskapper-den-haag/page": "app/thuiskapper-den-haag/page.js",
+  "/thuiskapper-eindhoven/page": "app/thuiskapper-eindhoven/page.js",
   "/thuiskapper-groningen/page": "app/thuiskapper-groningen/page.js",
   "/thuiskapper-nijmegen/page": "app/thuiskapper-nijmegen/page.js",
   "/thuiskapper-rotterdam/page": "app/thuiskapper-rotterdam/page.js",
