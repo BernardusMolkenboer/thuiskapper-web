@@ -83,7 +83,7 @@ export default function ThuiskapperAlmerePage() {
         "@type": "ListItem",
         position: 2,
         name: "Locaties",
-        item: `${SITE_URL}/#kappers`,
+        item: `${SITE_URL}/locaties`,
       },
       { "@type": "ListItem", position: 3, name: "Almere", item: PAGE_URL },
     ],
@@ -125,7 +125,7 @@ export default function ThuiskapperAlmerePage() {
       <PageTop
         title="Thuiskapper in Almere"
         description="Kapper aan huis in Almere: ontspannen thuis geknipt worden, zonder gedoe en zonder reizen."
-        crumbs={[{ label: "Locaties", href: "/#kappers" }, { label: "Almere" }]}
+        crumbs={[{ label: "Locaties", href: "/locaties" }, { label: "Almere" }]}
       />
 
       <div className="max-w-6xl mx-auto px-4 sm:px-6 py-8 sm:py-12">
@@ -337,7 +337,7 @@ export default function ThuiskapperAlmerePage() {
                     <ChevronRight className="w-4 h-4" />
                   </Link>
                   <Link
-                    href="/veelgestelde-vragen"
+                    href="/vraag-en-antwoord"
                     className="inline-flex items-center justify-center gap-2 bg-white hover:bg-gray-50 text-gray-900 font-semibold py-3.5 px-5 rounded-lg border border-gray-200 transition-colors"
                   >
                     Bekijk FAQ

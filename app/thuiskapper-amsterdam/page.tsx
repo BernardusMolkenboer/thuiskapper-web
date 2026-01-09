@@ -77,7 +77,7 @@ export default function ThuiskapperAmsterdamPage() {
         "@type": "ListItem",
         position: 2,
         name: "Locaties",
-        item: `${SITE_URL}/#kappers`,
+        item: `${SITE_URL}/locaties`,
       },
       { "@type": "ListItem", position: 3, name: "Amsterdam", item: PAGE_URL },
     ],
@@ -120,7 +120,7 @@ export default function ThuiskapperAmsterdamPage() {
         title="Thuiskapper in Amsterdam"
         description="Kapper aan huis in Amsterdam: onze thuiskappers komen overal op locatie langs — snel, flexibel en comfortabel."
         crumbs={[
-          { label: "Locaties", href: "/#kappers" },
+          { label: "Locaties", href: "/locaties" },
           { label: "Amsterdam" },
         ]}
       />
@@ -329,7 +329,7 @@ export default function ThuiskapperAmsterdamPage() {
                     <ChevronRight className="w-4 h-4" />
                   </Link>
                   <Link
-                    href="/veelgestelde-vragen"
+                    href="/vraag-en-antwoord"
                     className="inline-flex items-center justify-center gap-2 bg-white hover:bg-gray-50 text-gray-900 font-semibold py-3.5 px-5 rounded-lg border border-gray-200 transition-colors"
                   >
                     Bekijk FAQ

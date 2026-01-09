@@ -3,8 +3,17 @@
   "/account-verwijderen/page": "app/account-verwijderen/page.js",
   "/algemene-voorwaarden/page": "app/algemene-voorwaarden/page.js",
   "/cookies/page": "app/cookies/page.js",
+  "/locaties/page": "app/locaties/page.js",
   "/page": "app/page.js",
   "/privacy/page": "app/privacy/page.js",
+  "/thuiskapper-almere/page": "app/thuiskapper-almere/page.js",
   "/thuiskapper-amsterdam/page": "app/thuiskapper-amsterdam/page.js",
+  "/thuiskapper-breda/page": "app/thuiskapper-breda/page.js",
+  "/thuiskapper-den-haag/page": "app/thuiskapper-den-haag/page.js",
+  "/thuiskapper-groningen/page": "app/thuiskapper-groningen/page.js",
+  "/thuiskapper-nijmegen/page": "app/thuiskapper-nijmegen/page.js",
+  "/thuiskapper-rotterdam/page": "app/thuiskapper-rotterdam/page.js",
+  "/thuiskapper-tilburg/page": "app/thuiskapper-tilburg/page.js",
+  "/thuiskapper-utrecht/page": "app/thuiskapper-utrecht/page.js",
   "/vraag-en-antwoord/page": "app/vraag-en-antwoord/page.js"
 }

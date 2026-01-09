@@ -1,4 +1,4 @@
-// app/veelgestelde-vragen/page.tsx
+// app/vraag-en-antwoord/page.tsx
 import type { Metadata } from "next";
 import PageTop from "@/components/PageTop";
 import Link from "next/link";
@@ -12,7 +12,7 @@ import {
 } from "lucide-react";
 
 const SITE_URL = "https://www.thuiskapper.app";
-const CANONICAL_PATH = "/veelgestelde-vragen";
+const CANONICAL_PATH = "/vraag-en-antwoord";
 const PAGE_URL = `${SITE_URL}${CANONICAL_PATH}`;
 const LAST_UPDATED_DISPLAY = "9 januari 2026";
 const LAST_UPDATED_ISO = "2026-01-09";

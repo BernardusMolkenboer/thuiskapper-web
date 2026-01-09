@@ -77,7 +77,7 @@ export default function ThuiskapperBredaPage() {
         "@type": "ListItem",
         position: 2,
         name: "Locaties",
-        item: `${SITE_URL}/#kappers`,
+        item: `${SITE_URL}/locaties`,
       },
       { "@type": "ListItem", position: 3, name: "Breda", item: PAGE_URL },
     ],
@@ -119,7 +119,7 @@ export default function ThuiskapperBredaPage() {
       <PageTop
         title="Thuiskapper in Breda"
         description="Geen zin om naar de kapper te gaan? Boek een kapper aan huis in Breda — comfortabel, snel en flexibel."
-        crumbs={[{ label: "Locaties", href: "/#kappers" }, { label: "Breda" }]}
+        crumbs={[{ label: "Locaties", href: "/locaties" }, { label: "Breda" }]}
       />
 
       <div className="max-w-6xl mx-auto px-4 sm:px-6 py-8 sm:py-12">
@@ -334,7 +334,7 @@ export default function ThuiskapperBredaPage() {
                     <ChevronRight className="w-4 h-4" />
                   </Link>
                   <Link
-                    href="/veelgestelde-vragen"
+                    href="/vraag-en-antwoord"
                     className="inline-flex items-center justify-center gap-2 bg-white hover:bg-gray-50 text-gray-900 font-semibold py-3.5 px-5 rounded-lg border border-gray-200 transition-colors"
                   >
                     Bekijk FAQ

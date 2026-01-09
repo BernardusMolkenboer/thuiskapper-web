@@ -12,7 +12,20 @@ export default function sitemap(): MetadataRoute.Sitemap {
     "/cookies",
     "/account-verwijderen",
     "/algemene-voorwaarden",
-    "/veelgestelde-vragen",
+    "/vraag-en-antwoord",
+    "/locaties",
+
+    // City pages
+    "/thuiskapper-amsterdam",
+    "/thuiskapper-rotterdam",
+    "/thuiskapper-den-haag",
+    "/thuiskapper-utrecht",
+    "/thuiskapper-eindhoven",
+    "/thuiskapper-tilburg",
+    "/thuiskapper-groningen",
+    "/thuiskapper-almere",
+    "/thuiskapper-breda",
+    "/thuiskapper-nijmegen",
   ];
 
   return routes.map((path) => ({

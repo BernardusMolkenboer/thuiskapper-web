@@ -77,7 +77,7 @@ export default function ThuiskapperNijmegenPage() {
         "@type": "ListItem",
         position: 2,
         name: "Locaties",
-        item: `${SITE_URL}/#kappers`,
+        item: `${SITE_URL}/locaties`,
       },
       { "@type": "ListItem", position: 3, name: "Nijmegen", item: PAGE_URL },
     ],
@@ -120,7 +120,7 @@ export default function ThuiskapperNijmegenPage() {
         title="Thuiskapper in Nijmegen"
         description="Ontdek de beste thuiskappers van Nijmegen en boek een kapper aan huis — comfortabel, snel en flexibel."
         crumbs={[
-          { label: "Locaties", href: "/#kappers" },
+          { label: "Locaties", href: "/locaties" },
           { label: "Nijmegen" },
         ]}
       />
@@ -335,7 +335,7 @@ export default function ThuiskapperNijmegenPage() {
                     <ChevronRight className="w-4 h-4" />
                   </Link>
                   <Link
-                    href="/veelgestelde-vragen"
+                    href="/vraag-en-antwoord"
                     className="inline-flex items-center justify-center gap-2 bg-white hover:bg-gray-50 text-gray-900 font-semibold py-3.5 px-5 rounded-lg border border-gray-200 transition-colors"
                   >
                     Bekijk FAQ
