@@ -41,10 +41,21 @@ var __TURBOPACK__imported__module__$5b$next$5d2f$internal$2f$font$2f$google$2f$i
 ;
 ;
 const metadata = {
-    title: 'Thuiskapper.app - Altijd een kapper bij jou thuis',
-    description: 'Vind direct een professionele kapper die naar je toe komt. Salon-kwaliteit in je eigen huiskamer.',
+    metadataBase: new URL("https://www.thuiskapper.app"),
+    title: "Thuiskapper.app - Altijd een kapper bij jou thuis",
+    description: "Vind direct een professionele kapper die naar je toe komt. Salon-kwaliteit in je eigen huiskamer.",
+    alternates: {
+        canonical: "/"
+    },
+    openGraph: {
+        type: "website",
+        url: "https://www.thuiskapper.app",
+        siteName: "Thuiskapper.app",
+        title: "Thuiskapper.app - Altijd een kapper bij jou thuis",
+        description: "Vind direct een professionele kapper die naar je toe komt. Salon-kwaliteit in je eigen huiskamer."
+    },
     icons: {
-        icon: '/favicon.png'
+        icon: "/favicon.png"
     }
 };
 function RootLayout({ children }) {
@@ -55,12 +66,12 @@ function RootLayout({ children }) {
             children: children
         }, void 0, false, {
             fileName: "[project]/app/layout.tsx",
-            lineNumber: 22,
+            lineNumber: 35,
             columnNumber: 7
         }, this)
     }, void 0, false, {
         fileName: "[project]/app/layout.tsx",
-        lineNumber: 21,
+        lineNumber: 34,
         columnNumber: 5
     }, this);
 }
