@@ -169,9 +169,9 @@ __turbopack_context__.s([
     ()=>CookiesPage
 ]);
 var __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/node_modules/next/dist/server/route-modules/app-page/vendored/ssr/react-jsx-dev-runtime.js [app-ssr] (ecmascript)");
-var __TURBOPACK__imported__module__$5b$project$5d2f$components$2f$PageTop$2e$tsx__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/components/PageTop.tsx [app-ssr] (ecmascript)");
 var __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/node_modules/next/dist/server/route-modules/app-page/vendored/ssr/react.js [app-ssr] (ecmascript)");
 var __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$client$2f$app$2d$dir$2f$link$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/node_modules/next/dist/client/app-dir/link.js [app-ssr] (ecmascript)");
+var __TURBOPACK__imported__module__$5b$project$5d2f$components$2f$PageTop$2e$tsx__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/components/PageTop.tsx [app-ssr] (ecmascript)");
 var __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$cookie$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__$3c$export__default__as__Cookie$3e$__ = __turbopack_context__.i("[project]/node_modules/lucide-react/dist/esm/icons/cookie.js [app-ssr] (ecmascript) <export default as Cookie>");
 var __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$shield$2d$check$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__$3c$export__default__as__ShieldCheck$3e$__ = __turbopack_context__.i("[project]/node_modules/lucide-react/dist/esm/icons/shield-check.js [app-ssr] (ecmascript) <export default as ShieldCheck>");
 var __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$chart$2d$column$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__$3c$export__default__as__BarChart3$3e$__ = __turbopack_context__.i("[project]/node_modules/lucide-react/dist/esm/icons/chart-column.js [app-ssr] (ecmascript) <export default as BarChart3>");
@@ -189,7 +189,11 @@ var __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$lucide$2d$re
 ;
 ;
 ;
+const SITE_URL = "https://www.thuiskapper.app";
+const CANONICAL_PATH = "/cookies";
+const PAGE_URL = `${SITE_URL}${CANONICAL_PATH}`;
 const LAST_UPDATED = "9 januari 2026";
+const LAST_UPDATED_ISO = "2026-01-09";
 const categories = [
     {
         id: "necessary",
@@ -248,6 +252,74 @@ function CookiesPage() {
         consent.analytics,
         consent.marketing
     ]);
+    // JSON-LD schema (static; no user-specific data)
+    const jsonLdWebPage = {
+        "@context": "https://schema.org",
+        "@type": "WebPage",
+        "@id": `${PAGE_URL}#webpage`,
+        url: PAGE_URL,
+        name: "Cookieverklaring | Thuiskapper.app",
+        description: "Cookieverklaring van Thuiskapper.app met uitleg over cookiecategorieën en het beheren van voorkeuren.",
+        inLanguage: "nl-NL",
+        isPartOf: {
+            "@type": "WebSite",
+            "@id": `${SITE_URL}/#website`,
+            url: SITE_URL,
+            name: "Thuiskapper.app"
+        },
+        about: {
+            "@type": "Organization",
+            "@id": `${SITE_URL}/#organization`,
+            name: "Thuiskapper.app",
+            url: SITE_URL,
+            email: "info@thuiskapper.app"
+        },
+        dateModified: LAST_UPDATED_ISO,
+        datePublished: LAST_UPDATED_ISO
+    };
+    const jsonLdBreadcrumbs = {
+        "@context": "https://schema.org",
+        "@type": "BreadcrumbList",
+        itemListElement: [
+            {
+                "@type": "ListItem",
+                position: 1,
+                name: "Home",
+                item: SITE_URL
+            },
+            {
+                "@type": "ListItem",
+                position: 2,
+                name: "Cookieverklaring",
+                item: PAGE_URL
+            }
+        ]
+    };
+    const jsonLdOrganization = {
+        "@context": "https://schema.org",
+        "@type": "Organization",
+        "@id": `${SITE_URL}/#organization`,
+        name: "Thuiskapper.app",
+        url: SITE_URL,
+        contactPoint: [
+            {
+                "@type": "ContactPoint",
+                contactType: "customer support",
+                email: "info@thuiskapper.app",
+                availableLanguage: [
+                    "nl"
+                ]
+            },
+            {
+                "@type": "ContactPoint",
+                contactType: "privacy",
+                email: "privacy@thuiskapper.app",
+                availableLanguage: [
+                    "nl"
+                ]
+            }
+        ]
+    };
     const savePreferences = async ()=>{
         setStatus("saving");
         try {
@@ -290,6 +362,20 @@ function CookiesPage() {
     return /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
         className: "min-h-screen bg-white",
         children: [
+            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("script", {
+                type: "application/ld+json",
+                dangerouslySetInnerHTML: {
+                    __html: JSON.stringify([
+                        jsonLdWebPage,
+                        jsonLdBreadcrumbs,
+                        jsonLdOrganization
+                    ])
+                }
+            }, void 0, false, {
+                fileName: "[project]/app/cookies/page.tsx",
+                lineNumber: 200,
+                columnNumber: 7
+            }, this),
             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$components$2f$PageTop$2e$tsx__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["default"], {
                 title: "Cookieverklaring",
                 description: "Ontdek welke cookies en vergelijkbare technologieën we gebruiken, waarom we dat doen en hoe u uw voorkeuren beheert.",
@@ -300,7 +386,7 @@ function CookiesPage() {
                 ]
             }, void 0, false, {
                 fileName: "[project]/app/cookies/page.tsx",
-                lineNumber: 132,
+                lineNumber: 211,
                 columnNumber: 7
             }, this),
             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -315,7 +401,7 @@ function CookiesPage() {
                                     className: "w-5 h-5 text-emerald-700 mt-0.5"
                                 }, void 0, false, {
                                     fileName: "[project]/app/cookies/page.tsx",
-                                    lineNumber: 142,
+                                    lineNumber: 221,
                                     columnNumber: 13
                                 }, this),
                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -326,7 +412,7 @@ function CookiesPage() {
                                             children: "Uw cookievoorkeuren"
                                         }, void 0, false, {
                                             fileName: "[project]/app/cookies/page.tsx",
-                                            lineNumber: 144,
+                                            lineNumber: 223,
                                             columnNumber: 15
                                         }, this),
                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
@@ -337,13 +423,13 @@ function CookiesPage() {
                                                     children: enabledSummary
                                                 }, void 0, false, {
                                                     fileName: "[project]/app/cookies/page.tsx",
-                                                    lineNumber: 148,
+                                                    lineNumber: 227,
                                                     columnNumber: 25
                                                 }, this)
                                             ]
                                         }, void 0, true, {
                                             fileName: "[project]/app/cookies/page.tsx",
-                                            lineNumber: 147,
+                                            lineNumber: 226,
                                             columnNumber: 15
                                         }, this),
                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -358,14 +444,14 @@ function CookiesPage() {
                                                             className: "w-4 h-4"
                                                         }, void 0, false, {
                                                             fileName: "[project]/app/cookies/page.tsx",
-                                                            lineNumber: 157,
+                                                            lineNumber: 236,
                                                             columnNumber: 19
                                                         }, this),
                                                         "Alles accepteren"
                                                     ]
                                                 }, void 0, true, {
                                                     fileName: "[project]/app/cookies/page.tsx",
-                                                    lineNumber: 152,
+                                                    lineNumber: 231,
                                                     columnNumber: 17
                                                 }, this),
                                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("button", {
@@ -375,7 +461,7 @@ function CookiesPage() {
                                                     children: "Alleen noodzakelijk"
                                                 }, void 0, false, {
                                                     fileName: "[project]/app/cookies/page.tsx",
-                                                    lineNumber: 161,
+                                                    lineNumber: 240,
                                                     columnNumber: 17
                                                 }, this),
                                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("button", {
@@ -387,20 +473,20 @@ function CookiesPage() {
                                                             className: "w-4 h-4"
                                                         }, void 0, false, {
                                                             fileName: "[project]/app/cookies/page.tsx",
-                                                            lineNumber: 174,
+                                                            lineNumber: 253,
                                                             columnNumber: 19
                                                         }, this),
                                                         "Voorkeuren aanpassen"
                                                     ]
                                                 }, void 0, true, {
                                                     fileName: "[project]/app/cookies/page.tsx",
-                                                    lineNumber: 169,
+                                                    lineNumber: 248,
                                                     columnNumber: 17
                                                 }, this)
                                             ]
                                         }, void 0, true, {
                                             fileName: "[project]/app/cookies/page.tsx",
-                                            lineNumber: 151,
+                                            lineNumber: 230,
                                             columnNumber: 15
                                         }, this),
                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
@@ -410,7 +496,7 @@ function CookiesPage() {
                                                     children: "Laatst bijgewerkt:"
                                                 }, void 0, false, {
                                                     fileName: "[project]/app/cookies/page.tsx",
-                                                    lineNumber: 180,
+                                                    lineNumber: 259,
                                                     columnNumber: 17
                                                 }, this),
                                                 " ",
@@ -418,24 +504,24 @@ function CookiesPage() {
                                             ]
                                         }, void 0, true, {
                                             fileName: "[project]/app/cookies/page.tsx",
-                                            lineNumber: 179,
+                                            lineNumber: 258,
                                             columnNumber: 15
                                         }, this)
                                     ]
                                 }, void 0, true, {
                                     fileName: "[project]/app/cookies/page.tsx",
-                                    lineNumber: 143,
+                                    lineNumber: 222,
                                     columnNumber: 13
                                 }, this)
                             ]
                         }, void 0, true, {
                             fileName: "[project]/app/cookies/page.tsx",
-                            lineNumber: 141,
+                            lineNumber: 220,
                             columnNumber: 11
                         }, this)
                     }, void 0, false, {
                         fileName: "[project]/app/cookies/page.tsx",
-                        lineNumber: 140,
+                        lineNumber: 219,
                         columnNumber: 9
                     }, this),
                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -446,7 +532,7 @@ function CookiesPage() {
                                 children: "Belangrijke informatie"
                             }, void 0, false, {
                                 fileName: "[project]/app/cookies/page.tsx",
-                                lineNumber: 188,
+                                lineNumber: 267,
                                 columnNumber: 11
                             }, this),
                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("ul", {
@@ -456,33 +542,33 @@ function CookiesPage() {
                                         children: "Noodzakelijke cookies zijn altijd aan omdat ze essentieel zijn voor beveiliging en werking."
                                     }, void 0, false, {
                                         fileName: "[project]/app/cookies/page.tsx",
-                                        lineNumber: 192,
+                                        lineNumber: 271,
                                         columnNumber: 13
                                     }, this),
                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("li", {
                                         children: "Analytische en marketingcookies zetten we alleen aan als u dat kiest."
                                     }, void 0, false, {
                                         fileName: "[project]/app/cookies/page.tsx",
-                                        lineNumber: 196,
+                                        lineNumber: 275,
                                         columnNumber: 13
                                     }, this),
                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("li", {
                                         children: "U kunt uw voorkeuren op elk moment aanpassen of cookies verwijderen via uw browserinstellingen."
                                     }, void 0, false, {
                                         fileName: "[project]/app/cookies/page.tsx",
-                                        lineNumber: 200,
+                                        lineNumber: 279,
                                         columnNumber: 13
                                     }, this)
                                 ]
                             }, void 0, true, {
                                 fileName: "[project]/app/cookies/page.tsx",
-                                lineNumber: 191,
+                                lineNumber: 270,
                                 columnNumber: 11
                             }, this)
                         ]
                     }, void 0, true, {
                         fileName: "[project]/app/cookies/page.tsx",
-                        lineNumber: 187,
+                        lineNumber: 266,
                         columnNumber: 9
                     }, this),
                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -493,7 +579,7 @@ function CookiesPage() {
                                 children: "Snel naar:"
                             }, void 0, false, {
                                 fileName: "[project]/app/cookies/page.tsx",
-                                lineNumber: 209,
+                                lineNumber: 288,
                                 columnNumber: 11
                             }, this),
                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -526,18 +612,18 @@ function CookiesPage() {
                                         children: item.label
                                     }, item.id, false, {
                                         fileName: "[project]/app/cookies/page.tsx",
-                                        lineNumber: 218,
+                                        lineNumber: 297,
                                         columnNumber: 15
                                     }, this))
                             }, void 0, false, {
                                 fileName: "[project]/app/cookies/page.tsx",
-                                lineNumber: 210,
+                                lineNumber: 289,
                                 columnNumber: 11
                             }, this)
                         ]
                     }, void 0, true, {
                         fileName: "[project]/app/cookies/page.tsx",
-                        lineNumber: 208,
+                        lineNumber: 287,
                         columnNumber: 9
                     }, this),
                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -553,7 +639,7 @@ function CookiesPage() {
                                                 className: "w-5 h-5 text-gray-700 mt-0.5"
                                             }, void 0, false, {
                                                 fileName: "[project]/app/cookies/page.tsx",
-                                                lineNumber: 239,
+                                                lineNumber: 318,
                                                 columnNumber: 15
                                             }, this),
                                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -563,7 +649,7 @@ function CookiesPage() {
                                                         children: "Wat zijn cookies?"
                                                     }, void 0, false, {
                                                         fileName: "[project]/app/cookies/page.tsx",
-                                                        lineNumber: 241,
+                                                        lineNumber: 320,
                                                         columnNumber: 17
                                                     }, this),
                                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
@@ -571,19 +657,19 @@ function CookiesPage() {
                                                         children: "Kleine bestanden / opslag die de website helpen werken en voorkeuren onthouden."
                                                     }, void 0, false, {
                                                         fileName: "[project]/app/cookies/page.tsx",
-                                                        lineNumber: 244,
+                                                        lineNumber: 323,
                                                         columnNumber: 17
                                                     }, this)
                                                 ]
                                             }, void 0, true, {
                                                 fileName: "[project]/app/cookies/page.tsx",
-                                                lineNumber: 240,
+                                                lineNumber: 319,
                                                 columnNumber: 15
                                             }, this)
                                         ]
                                     }, void 0, true, {
                                         fileName: "[project]/app/cookies/page.tsx",
-                                        lineNumber: 238,
+                                        lineNumber: 317,
                                         columnNumber: 13
                                     }, this),
                                     openSection === "wat-zijn-cookies" ? /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -593,7 +679,7 @@ function CookiesPage() {
                                                 children: "Cookies zijn kleine tekstbestanden die in uw browser kunnen worden opgeslagen. Ze helpen bijvoorbeeld bij beveiliging, basisfunctionaliteit of het onthouden van voorkeuren."
                                             }, void 0, false, {
                                                 fileName: "[project]/app/cookies/page.tsx",
-                                                lineNumber: 253,
+                                                lineNumber: 332,
                                                 columnNumber: 17
                                             }, this),
                                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
@@ -604,14 +690,14 @@ function CookiesPage() {
                                                         children: "vergelijkbare technieken"
                                                     }, void 0, false, {
                                                         fileName: "[project]/app/cookies/page.tsx",
-                                                        lineNumber: 260,
+                                                        lineNumber: 339,
                                                         columnNumber: 19
                                                     }, this),
                                                     " zoals local storage en scripts. Wanneer die worden gebruikt voor analytics of marketing, behandelen we ze hetzelfde als cookies: alleen met uw toestemming."
                                                 ]
                                             }, void 0, true, {
                                                 fileName: "[project]/app/cookies/page.tsx",
-                                                lineNumber: 258,
+                                                lineNumber: 337,
                                                 columnNumber: 17
                                             }, this),
                                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
@@ -625,20 +711,20 @@ function CookiesPage() {
                                                         children: "privacybeleid"
                                                     }, void 0, false, {
                                                         fileName: "[project]/app/cookies/page.tsx",
-                                                        lineNumber: 267,
+                                                        lineNumber: 346,
                                                         columnNumber: 19
                                                     }, this),
                                                     "."
                                                 ]
                                             }, void 0, true, {
                                                 fileName: "[project]/app/cookies/page.tsx",
-                                                lineNumber: 265,
+                                                lineNumber: 344,
                                                 columnNumber: 17
                                             }, this)
                                         ]
                                     }, void 0, true, {
                                         fileName: "[project]/app/cookies/page.tsx",
-                                        lineNumber: 252,
+                                        lineNumber: 331,
                                         columnNumber: 15
                                     }, this) : /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("button", {
                                         type: "button",
@@ -647,13 +733,13 @@ function CookiesPage() {
                                         children: "Toon uitleg"
                                     }, void 0, false, {
                                         fileName: "[project]/app/cookies/page.tsx",
-                                        lineNumber: 277,
+                                        lineNumber: 356,
                                         columnNumber: 15
                                     }, this)
                                 ]
                             }, void 0, true, {
                                 fileName: "[project]/app/cookies/page.tsx",
-                                lineNumber: 237,
+                                lineNumber: 316,
                                 columnNumber: 11
                             }, this),
                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("section", {
@@ -664,7 +750,7 @@ function CookiesPage() {
                                         children: "Categorieën cookies"
                                     }, void 0, false, {
                                         fileName: "[project]/app/cookies/page.tsx",
-                                        lineNumber: 289,
+                                        lineNumber: 368,
                                         columnNumber: 13
                                     }, this),
                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -681,7 +767,7 @@ function CookiesPage() {
                                                             className: "w-5 h-5 text-gray-700 mt-0.5"
                                                         }, void 0, false, {
                                                             fileName: "[project]/app/cookies/page.tsx",
-                                                            lineNumber: 305,
+                                                            lineNumber: 384,
                                                             columnNumber: 23
                                                         }, this),
                                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -697,7 +783,7 @@ function CookiesPage() {
                                                                                     children: cat.title
                                                                                 }, void 0, false, {
                                                                                     fileName: "[project]/app/cookies/page.tsx",
-                                                                                    lineNumber: 309,
+                                                                                    lineNumber: 388,
                                                                                     columnNumber: 29
                                                                                 }, this),
                                                                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
@@ -705,13 +791,13 @@ function CookiesPage() {
                                                                                     children: cat.description
                                                                                 }, void 0, false, {
                                                                                     fileName: "[project]/app/cookies/page.tsx",
-                                                                                    lineNumber: 312,
+                                                                                    lineNumber: 391,
                                                                                     columnNumber: 29
                                                                                 }, this)
                                                                             ]
                                                                         }, void 0, true, {
                                                                             fileName: "[project]/app/cookies/page.tsx",
-                                                                            lineNumber: 308,
+                                                                            lineNumber: 387,
                                                                             columnNumber: 27
                                                                         }, this),
                                                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -721,25 +807,25 @@ function CookiesPage() {
                                                                                 children: "Altijd aan"
                                                                             }, void 0, false, {
                                                                                 fileName: "[project]/app/cookies/page.tsx",
-                                                                                lineNumber: 319,
+                                                                                lineNumber: 398,
                                                                                 columnNumber: 31
                                                                             }, this) : /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
                                                                                 className: "text-xs font-semibold bg-white text-gray-700 px-2.5 py-1 rounded-full border border-gray-200",
                                                                                 children: "Optioneel"
                                                                             }, void 0, false, {
                                                                                 fileName: "[project]/app/cookies/page.tsx",
-                                                                                lineNumber: 323,
+                                                                                lineNumber: 402,
                                                                                 columnNumber: 31
                                                                             }, this)
                                                                         }, void 0, false, {
                                                                             fileName: "[project]/app/cookies/page.tsx",
-                                                                            lineNumber: 317,
+                                                                            lineNumber: 396,
                                                                             columnNumber: 27
                                                                         }, this)
                                                                     ]
                                                                 }, void 0, true, {
                                                                     fileName: "[project]/app/cookies/page.tsx",
-                                                                    lineNumber: 307,
+                                                                    lineNumber: 386,
                                                                     columnNumber: 25
                                                                 }, this),
                                                                 isOpen && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -750,7 +836,7 @@ function CookiesPage() {
                                                                             children: "Voorbeelden:"
                                                                         }, void 0, false, {
                                                                             fileName: "[project]/app/cookies/page.tsx",
-                                                                            lineNumber: 332,
+                                                                            lineNumber: 411,
                                                                             columnNumber: 29
                                                                         }, this),
                                                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("ul", {
@@ -759,18 +845,18 @@ function CookiesPage() {
                                                                                     children: e
                                                                                 }, e, false, {
                                                                                     fileName: "[project]/app/cookies/page.tsx",
-                                                                                    lineNumber: 337,
+                                                                                    lineNumber: 416,
                                                                                     columnNumber: 33
                                                                                 }, this))
                                                                         }, void 0, false, {
                                                                             fileName: "[project]/app/cookies/page.tsx",
-                                                                            lineNumber: 335,
+                                                                            lineNumber: 414,
                                                                             columnNumber: 29
                                                                         }, this)
                                                                     ]
                                                                 }, void 0, true, {
                                                                     fileName: "[project]/app/cookies/page.tsx",
-                                                                    lineNumber: 331,
+                                                                    lineNumber: 410,
                                                                     columnNumber: 27
                                                                 }, this),
                                                                 openSection !== "categorieen" && openSection !== cat.id && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("button", {
@@ -780,30 +866,30 @@ function CookiesPage() {
                                                                     children: "Toon details"
                                                                 }, void 0, false, {
                                                                     fileName: "[project]/app/cookies/page.tsx",
-                                                                    lineNumber: 345,
+                                                                    lineNumber: 424,
                                                                     columnNumber: 29
                                                                 }, this)
                                                             ]
                                                         }, void 0, true, {
                                                             fileName: "[project]/app/cookies/page.tsx",
-                                                            lineNumber: 306,
+                                                            lineNumber: 385,
                                                             columnNumber: 23
                                                         }, this)
                                                     ]
                                                 }, void 0, true, {
                                                     fileName: "[project]/app/cookies/page.tsx",
-                                                    lineNumber: 304,
+                                                    lineNumber: 383,
                                                     columnNumber: 21
                                                 }, this)
                                             }, cat.id, false, {
                                                 fileName: "[project]/app/cookies/page.tsx",
-                                                lineNumber: 300,
+                                                lineNumber: 379,
                                                 columnNumber: 19
                                             }, this);
                                         })
                                     }, void 0, false, {
                                         fileName: "[project]/app/cookies/page.tsx",
-                                        lineNumber: 293,
+                                        lineNumber: 372,
                                         columnNumber: 13
                                     }, this),
                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -813,7 +899,7 @@ function CookiesPage() {
                                                 className: "w-5 h-5 text-gray-700 mt-0.5"
                                             }, void 0, false, {
                                                 fileName: "[project]/app/cookies/page.tsx",
-                                                lineNumber: 361,
+                                                lineNumber: 440,
                                                 columnNumber: 15
                                             }, this),
                                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
@@ -824,7 +910,7 @@ function CookiesPage() {
                                                         children: "analytische"
                                                     }, void 0, false, {
                                                         fileName: "[project]/app/cookies/page.tsx",
-                                                        lineNumber: 363,
+                                                        lineNumber: 442,
                                                         columnNumber: 30
                                                     }, this),
                                                     " en",
@@ -833,26 +919,26 @@ function CookiesPage() {
                                                         children: "marketing"
                                                     }, void 0, false, {
                                                         fileName: "[project]/app/cookies/page.tsx",
-                                                        lineNumber: 364,
+                                                        lineNumber: 443,
                                                         columnNumber: 17
                                                     }, this),
                                                     " cookies alleen wanneer u deze categorieën aanzet. Noodzakelijke cookies blijven actief voor beveiliging en werking van de site."
                                                 ]
                                             }, void 0, true, {
                                                 fileName: "[project]/app/cookies/page.tsx",
-                                                lineNumber: 362,
+                                                lineNumber: 441,
                                                 columnNumber: 15
                                             }, this)
                                         ]
                                     }, void 0, true, {
                                         fileName: "[project]/app/cookies/page.tsx",
-                                        lineNumber: 360,
+                                        lineNumber: 439,
                                         columnNumber: 13
                                     }, this)
                                 ]
                             }, void 0, true, {
                                 fileName: "[project]/app/cookies/page.tsx",
-                                lineNumber: 288,
+                                lineNumber: 367,
                                 columnNumber: 11
                             }, this),
                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("section", {
@@ -863,7 +949,7 @@ function CookiesPage() {
                                         children: "Voorkeuren aanpassen"
                                     }, void 0, false, {
                                         fileName: "[project]/app/cookies/page.tsx",
-                                        lineNumber: 373,
+                                        lineNumber: 452,
                                         columnNumber: 13
                                     }, this),
                                     openSection === "voorkeuren" ? /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -882,7 +968,7 @@ function CookiesPage() {
                                                                         children: "Noodzakelijk"
                                                                     }, void 0, false, {
                                                                         fileName: "[project]/app/cookies/page.tsx",
-                                                                        lineNumber: 382,
+                                                                        lineNumber: 461,
                                                                         columnNumber: 23
                                                                     }, this),
                                                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
@@ -890,13 +976,13 @@ function CookiesPage() {
                                                                         children: "Altijd aan voor beveiliging en basisfunctionaliteit."
                                                                     }, void 0, false, {
                                                                         fileName: "[project]/app/cookies/page.tsx",
-                                                                        lineNumber: 385,
+                                                                        lineNumber: 464,
                                                                         columnNumber: 23
                                                                     }, this)
                                                                 ]
                                                             }, void 0, true, {
                                                                 fileName: "[project]/app/cookies/page.tsx",
-                                                                lineNumber: 381,
+                                                                lineNumber: 460,
                                                                 columnNumber: 21
                                                             }, this),
                                                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
@@ -904,13 +990,13 @@ function CookiesPage() {
                                                                 children: "Aan"
                                                             }, void 0, false, {
                                                                 fileName: "[project]/app/cookies/page.tsx",
-                                                                lineNumber: 389,
+                                                                lineNumber: 468,
                                                                 columnNumber: 21
                                                             }, this)
                                                         ]
                                                     }, void 0, true, {
                                                         fileName: "[project]/app/cookies/page.tsx",
-                                                        lineNumber: 380,
+                                                        lineNumber: 459,
                                                         columnNumber: 19
                                                     }, this),
                                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("label", {
@@ -923,7 +1009,7 @@ function CookiesPage() {
                                                                         children: "Analytisch (optioneel)"
                                                                     }, void 0, false, {
                                                                         fileName: "[project]/app/cookies/page.tsx",
-                                                                        lineNumber: 396,
+                                                                        lineNumber: 475,
                                                                         columnNumber: 23
                                                                     }, this),
                                                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
@@ -931,13 +1017,13 @@ function CookiesPage() {
                                                                         children: "Helpt ons de website te verbeteren door gebruik te meten."
                                                                     }, void 0, false, {
                                                                         fileName: "[project]/app/cookies/page.tsx",
-                                                                        lineNumber: 399,
+                                                                        lineNumber: 478,
                                                                         columnNumber: 23
                                                                     }, this)
                                                                 ]
                                                             }, void 0, true, {
                                                                 fileName: "[project]/app/cookies/page.tsx",
-                                                                lineNumber: 395,
+                                                                lineNumber: 474,
                                                                 columnNumber: 21
                                                             }, this),
                                                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("input", {
@@ -950,13 +1036,13 @@ function CookiesPage() {
                                                                 className: "mt-1 w-5 h-5 text-emerald-600 focus:ring-emerald-500 rounded"
                                                             }, void 0, false, {
                                                                 fileName: "[project]/app/cookies/page.tsx",
-                                                                lineNumber: 404,
+                                                                lineNumber: 483,
                                                                 columnNumber: 21
                                                             }, this)
                                                         ]
                                                     }, void 0, true, {
                                                         fileName: "[project]/app/cookies/page.tsx",
-                                                        lineNumber: 394,
+                                                        lineNumber: 473,
                                                         columnNumber: 19
                                                     }, this),
                                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("label", {
@@ -969,7 +1055,7 @@ function CookiesPage() {
                                                                         children: "Marketing (optioneel)"
                                                                     }, void 0, false, {
                                                                         fileName: "[project]/app/cookies/page.tsx",
-                                                                        lineNumber: 416,
+                                                                        lineNumber: 495,
                                                                         columnNumber: 23
                                                                     }, this),
                                                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
@@ -977,13 +1063,13 @@ function CookiesPage() {
                                                                         children: "Voor het meten van campagnes en relevantere aanbiedingen (indien toegepast)."
                                                                     }, void 0, false, {
                                                                         fileName: "[project]/app/cookies/page.tsx",
-                                                                        lineNumber: 419,
+                                                                        lineNumber: 498,
                                                                         columnNumber: 23
                                                                     }, this)
                                                                 ]
                                                             }, void 0, true, {
                                                                 fileName: "[project]/app/cookies/page.tsx",
-                                                                lineNumber: 415,
+                                                                lineNumber: 494,
                                                                 columnNumber: 21
                                                             }, this),
                                                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("input", {
@@ -996,19 +1082,19 @@ function CookiesPage() {
                                                                 className: "mt-1 w-5 h-5 text-emerald-600 focus:ring-emerald-500 rounded"
                                                             }, void 0, false, {
                                                                 fileName: "[project]/app/cookies/page.tsx",
-                                                                lineNumber: 424,
+                                                                lineNumber: 503,
                                                                 columnNumber: 21
                                                             }, this)
                                                         ]
                                                     }, void 0, true, {
                                                         fileName: "[project]/app/cookies/page.tsx",
-                                                        lineNumber: 414,
+                                                        lineNumber: 493,
                                                         columnNumber: 19
                                                     }, this)
                                                 ]
                                             }, void 0, true, {
                                                 fileName: "[project]/app/cookies/page.tsx",
-                                                lineNumber: 379,
+                                                lineNumber: 458,
                                                 columnNumber: 17
                                             }, this),
                                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -1025,7 +1111,7 @@ function CookiesPage() {
                                                                     className: "w-5 h-5 animate-spin"
                                                                 }, void 0, false, {
                                                                     fileName: "[project]/app/cookies/page.tsx",
-                                                                    lineNumber: 444,
+                                                                    lineNumber: 523,
                                                                     columnNumber: 25
                                                                 }, this),
                                                                 "Opslaan..."
@@ -1036,7 +1122,7 @@ function CookiesPage() {
                                                                     className: "w-5 h-5"
                                                                 }, void 0, false, {
                                                                     fileName: "[project]/app/cookies/page.tsx",
-                                                                    lineNumber: 449,
+                                                                    lineNumber: 528,
                                                                     columnNumber: 25
                                                                 }, this),
                                                                 "Opgeslagen"
@@ -1044,7 +1130,7 @@ function CookiesPage() {
                                                         }, void 0, true) : "Voorkeuren opslaan"
                                                     }, void 0, false, {
                                                         fileName: "[project]/app/cookies/page.tsx",
-                                                        lineNumber: 436,
+                                                        lineNumber: 515,
                                                         columnNumber: 19
                                                     }, this),
                                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("button", {
@@ -1054,13 +1140,13 @@ function CookiesPage() {
                                                         children: "Reset"
                                                     }, void 0, false, {
                                                         fileName: "[project]/app/cookies/page.tsx",
-                                                        lineNumber: 457,
+                                                        lineNumber: 536,
                                                         columnNumber: 19
                                                     }, this)
                                                 ]
                                             }, void 0, true, {
                                                 fileName: "[project]/app/cookies/page.tsx",
-                                                lineNumber: 435,
+                                                lineNumber: 514,
                                                 columnNumber: 17
                                             }, this),
                                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
@@ -1068,13 +1154,13 @@ function CookiesPage() {
                                                 children: "We slaan uw voorkeuren lokaal op in uw browser (geen account nodig). Als u cookies of sitegegevens verwijdert, kan deze keuze verdwijnen."
                                             }, void 0, false, {
                                                 fileName: "[project]/app/cookies/page.tsx",
-                                                lineNumber: 466,
+                                                lineNumber: 545,
                                                 columnNumber: 17
                                             }, this)
                                         ]
                                     }, void 0, true, {
                                         fileName: "[project]/app/cookies/page.tsx",
-                                        lineNumber: 378,
+                                        lineNumber: 457,
                                         columnNumber: 15
                                     }, this) : /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("button", {
                                         type: "button",
@@ -1083,13 +1169,13 @@ function CookiesPage() {
                                         children: "Open voorkeuren"
                                     }, void 0, false, {
                                         fileName: "[project]/app/cookies/page.tsx",
-                                        lineNumber: 473,
+                                        lineNumber: 552,
                                         columnNumber: 15
                                     }, this)
                                 ]
                             }, void 0, true, {
                                 fileName: "[project]/app/cookies/page.tsx",
-                                lineNumber: 372,
+                                lineNumber: 451,
                                 columnNumber: 11
                             }, this),
                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("section", {
@@ -1102,7 +1188,7 @@ function CookiesPage() {
                                                 className: "w-5 h-5 text-gray-700 mt-0.5"
                                             }, void 0, false, {
                                                 fileName: "[project]/app/cookies/page.tsx",
-                                                lineNumber: 486,
+                                                lineNumber: 565,
                                                 columnNumber: 15
                                             }, this),
                                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -1112,7 +1198,7 @@ function CookiesPage() {
                                                         children: "Cookies verwijderen via uw browser"
                                                     }, void 0, false, {
                                                         fileName: "[project]/app/cookies/page.tsx",
-                                                        lineNumber: 488,
+                                                        lineNumber: 567,
                                                         columnNumber: 17
                                                     }, this),
                                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
@@ -1120,19 +1206,19 @@ function CookiesPage() {
                                                         children: "U kunt cookies altijd verwijderen of blokkeren via uw browser."
                                                     }, void 0, false, {
                                                         fileName: "[project]/app/cookies/page.tsx",
-                                                        lineNumber: 491,
+                                                        lineNumber: 570,
                                                         columnNumber: 17
                                                     }, this)
                                                 ]
                                             }, void 0, true, {
                                                 fileName: "[project]/app/cookies/page.tsx",
-                                                lineNumber: 487,
+                                                lineNumber: 566,
                                                 columnNumber: 15
                                             }, this)
                                         ]
                                     }, void 0, true, {
                                         fileName: "[project]/app/cookies/page.tsx",
-                                        lineNumber: 485,
+                                        lineNumber: 564,
                                         columnNumber: 13
                                     }, this),
                                     openSection === "browser" ? /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -1142,7 +1228,7 @@ function CookiesPage() {
                                                 children: "U kunt via de instellingen van uw browser cookies verwijderen, blokkeren of beperken. Houd er rekening mee dat het blokkeren van noodzakelijke cookies invloed kan hebben op de werking van de website."
                                             }, void 0, false, {
                                                 fileName: "[project]/app/cookies/page.tsx",
-                                                lineNumber: 499,
+                                                lineNumber: 578,
                                                 columnNumber: 17
                                             }, this),
                                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("ul", {
@@ -1154,14 +1240,14 @@ function CookiesPage() {
                                                                 children: "Verwijderen:"
                                                             }, void 0, false, {
                                                                 fileName: "[project]/app/cookies/page.tsx",
-                                                                lineNumber: 507,
+                                                                lineNumber: 586,
                                                                 columnNumber: 21
                                                             }, this),
                                                             " verwijder “cookies en sitegegevens” in uw browserinstellingen."
                                                         ]
                                                     }, void 0, true, {
                                                         fileName: "[project]/app/cookies/page.tsx",
-                                                        lineNumber: 506,
+                                                        lineNumber: 585,
                                                         columnNumber: 19
                                                     }, this),
                                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("li", {
@@ -1170,14 +1256,14 @@ function CookiesPage() {
                                                                 children: "Blokkeren:"
                                                             }, void 0, false, {
                                                                 fileName: "[project]/app/cookies/page.tsx",
-                                                                lineNumber: 511,
+                                                                lineNumber: 590,
                                                                 columnNumber: 21
                                                             }, this),
                                                             " stel uw browser in om cookies (gedeeltelijk) te weigeren."
                                                         ]
                                                     }, void 0, true, {
                                                         fileName: "[project]/app/cookies/page.tsx",
-                                                        lineNumber: 510,
+                                                        lineNumber: 589,
                                                         columnNumber: 19
                                                     }, this),
                                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("li", {
@@ -1186,20 +1272,20 @@ function CookiesPage() {
                                                                 children: "Privémodus:"
                                                             }, void 0, false, {
                                                                 fileName: "[project]/app/cookies/page.tsx",
-                                                                lineNumber: 515,
+                                                                lineNumber: 594,
                                                                 columnNumber: 21
                                                             }, this),
                                                             " helpt om minder gegevens te bewaren na het sluiten van de browser."
                                                         ]
                                                     }, void 0, true, {
                                                         fileName: "[project]/app/cookies/page.tsx",
-                                                        lineNumber: 514,
+                                                        lineNumber: 593,
                                                         columnNumber: 19
                                                     }, this)
                                                 ]
                                             }, void 0, true, {
                                                 fileName: "[project]/app/cookies/page.tsx",
-                                                lineNumber: 505,
+                                                lineNumber: 584,
                                                 columnNumber: 17
                                             }, this),
                                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
@@ -1210,20 +1296,20 @@ function CookiesPage() {
                                                         children: "thuiskapper.app"
                                                     }, void 0, false, {
                                                         fileName: "[project]/app/cookies/page.tsx",
-                                                        lineNumber: 522,
+                                                        lineNumber: 601,
                                                         columnNumber: 30
                                                     }, this),
                                                     " in uw browser."
                                                 ]
                                             }, void 0, true, {
                                                 fileName: "[project]/app/cookies/page.tsx",
-                                                lineNumber: 520,
+                                                lineNumber: 599,
                                                 columnNumber: 17
                                             }, this)
                                         ]
                                     }, void 0, true, {
                                         fileName: "[project]/app/cookies/page.tsx",
-                                        lineNumber: 498,
+                                        lineNumber: 577,
                                         columnNumber: 15
                                     }, this) : /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("button", {
                                         type: "button",
@@ -1232,13 +1318,13 @@ function CookiesPage() {
                                         children: "Toon stappen"
                                     }, void 0, false, {
                                         fileName: "[project]/app/cookies/page.tsx",
-                                        lineNumber: 526,
+                                        lineNumber: 605,
                                         columnNumber: 15
                                     }, this)
                                 ]
                             }, void 0, true, {
                                 fileName: "[project]/app/cookies/page.tsx",
-                                lineNumber: 484,
+                                lineNumber: 563,
                                 columnNumber: 11
                             }, this),
                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("section", {
@@ -1251,7 +1337,7 @@ function CookiesPage() {
                                                 className: "w-5 h-5 text-gray-700 mt-0.5"
                                             }, void 0, false, {
                                                 fileName: "[project]/app/cookies/page.tsx",
-                                                lineNumber: 539,
+                                                lineNumber: 618,
                                                 columnNumber: 15
                                             }, this),
                                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("h2", {
@@ -1259,13 +1345,13 @@ function CookiesPage() {
                                                 children: "Vragen over cookies?"
                                             }, void 0, false, {
                                                 fileName: "[project]/app/cookies/page.tsx",
-                                                lineNumber: 540,
+                                                lineNumber: 619,
                                                 columnNumber: 15
                                             }, this)
                                         ]
                                     }, void 0, true, {
                                         fileName: "[project]/app/cookies/page.tsx",
-                                        lineNumber: 538,
+                                        lineNumber: 617,
                                         columnNumber: 13
                                     }, this),
                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
@@ -1273,7 +1359,7 @@ function CookiesPage() {
                                         children: "Heeft u vragen over deze cookieverklaring of wilt u iets verduidelijken? Neem contact met ons op."
                                     }, void 0, false, {
                                         fileName: "[project]/app/cookies/page.tsx",
-                                        lineNumber: 545,
+                                        lineNumber: 624,
                                         columnNumber: 13
                                     }, this),
                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -1293,19 +1379,19 @@ function CookiesPage() {
                                                                 className: "w-3.5 h-3.5"
                                                             }, void 0, false, {
                                                                 fileName: "[project]/app/cookies/page.tsx",
-                                                                lineNumber: 557,
+                                                                lineNumber: 636,
                                                                 columnNumber: 40
                                                             }, this)
                                                         ]
                                                     }, void 0, true, {
                                                         fileName: "[project]/app/cookies/page.tsx",
-                                                        lineNumber: 553,
+                                                        lineNumber: 632,
                                                         columnNumber: 17
                                                     }, this)
                                                 ]
                                             }, void 0, true, {
                                                 fileName: "[project]/app/cookies/page.tsx",
-                                                lineNumber: 551,
+                                                lineNumber: 630,
                                                 columnNumber: 15
                                             }, this),
                                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
@@ -1323,19 +1409,19 @@ function CookiesPage() {
                                                                 className: "w-3.5 h-3.5"
                                                             }, void 0, false, {
                                                                 fileName: "[project]/app/cookies/page.tsx",
-                                                                lineNumber: 567,
+                                                                lineNumber: 646,
                                                                 columnNumber: 19
                                                             }, this)
                                                         ]
                                                     }, void 0, true, {
                                                         fileName: "[project]/app/cookies/page.tsx",
-                                                        lineNumber: 562,
+                                                        lineNumber: 641,
                                                         columnNumber: 17
                                                     }, this)
                                                 ]
                                             }, void 0, true, {
                                                 fileName: "[project]/app/cookies/page.tsx",
-                                                lineNumber: 560,
+                                                lineNumber: 639,
                                                 columnNumber: 15
                                             }, this),
                                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
@@ -1349,20 +1435,20 @@ function CookiesPage() {
                                                         children: "privacybeleid"
                                                     }, void 0, false, {
                                                         fileName: "[project]/app/cookies/page.tsx",
-                                                        lineNumber: 572,
+                                                        lineNumber: 651,
                                                         columnNumber: 17
                                                     }, this),
                                                     "."
                                                 ]
                                             }, void 0, true, {
                                                 fileName: "[project]/app/cookies/page.tsx",
-                                                lineNumber: 570,
+                                                lineNumber: 649,
                                                 columnNumber: 15
                                             }, this)
                                         ]
                                     }, void 0, true, {
                                         fileName: "[project]/app/cookies/page.tsx",
-                                        lineNumber: 550,
+                                        lineNumber: 629,
                                         columnNumber: 13
                                     }, this),
                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
@@ -1374,7 +1460,7 @@ function CookiesPage() {
                                                 children: "/cookies"
                                             }, void 0, false, {
                                                 fileName: "[project]/app/cookies/page.tsx",
-                                                lineNumber: 583,
+                                                lineNumber: 662,
                                                 columnNumber: 26
                                             }, this),
                                             " • Laatste update: ",
@@ -1382,31 +1468,31 @@ function CookiesPage() {
                                         ]
                                     }, void 0, true, {
                                         fileName: "[project]/app/cookies/page.tsx",
-                                        lineNumber: 582,
+                                        lineNumber: 661,
                                         columnNumber: 13
                                     }, this)
                                 ]
                             }, void 0, true, {
                                 fileName: "[project]/app/cookies/page.tsx",
-                                lineNumber: 537,
+                                lineNumber: 616,
                                 columnNumber: 11
                             }, this)
                         ]
                     }, void 0, true, {
                         fileName: "[project]/app/cookies/page.tsx",
-                        lineNumber: 235,
+                        lineNumber: 314,
                         columnNumber: 9
                     }, this)
                 ]
             }, void 0, true, {
                 fileName: "[project]/app/cookies/page.tsx",
-                lineNumber: 138,
+                lineNumber: 217,
                 columnNumber: 7
             }, this)
         ]
     }, void 0, true, {
         fileName: "[project]/app/cookies/page.tsx",
-        lineNumber: 131,
+        lineNumber: 198,
         columnNumber: 5
     }, this);
 }

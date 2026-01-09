@@ -1,3 +1,4 @@
+// app/account-verwijderen/page.tsx
 "use client";
 
 import { useState } from "react";
@@ -15,6 +16,11 @@ import {
 } from "lucide-react";
 
 type RequestType = "full_account" | "partial_data";
+
+const SITE_URL = "https://www.thuiskapper.app";
+const CANONICAL_PATH = "/account-verwijderen";
+const PAGE_URL = `${SITE_URL}${CANONICAL_PATH}`;
+const LAST_UPDATED_ISO = "2026-01-09";
 
 const dataTypes = [
   {
@@ -88,9 +94,84 @@ export default function AccountVerwijderen() {
     setStatus("success");
   };
 
+  // JSON-LD schema (kept static; no user email included)
+  const jsonLdWebPage = {
+    "@context": "https://schema.org",
+    "@type": "WebPage",
+    "@id": `${PAGE_URL}#webpage`,
+    url: PAGE_URL,
+    name: "Account verwijderen | Thuiskapper.app",
+    description:
+      "Instructiepagina voor het verwijderen van een Thuiskapper-account via de app en privacy-contactinformatie.",
+    inLanguage: "nl-NL",
+    isPartOf: {
+      "@type": "WebSite",
+      "@id": `${SITE_URL}/#website`,
+      url: SITE_URL,
+      name: "Thuiskapper.app",
+    },
+    about: {
+      "@type": "Organization",
+      "@id": `${SITE_URL}/#organization`,
+      name: "Thuiskapper.app",
+      url: SITE_URL,
+      email: "privacy@thuiskapper.app",
+    },
+    dateModified: LAST_UPDATED_ISO,
+    datePublished: LAST_UPDATED_ISO,
+  };
+
+  const jsonLdBreadcrumbs = {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    itemListElement: [
+      { "@type": "ListItem", position: 1, name: "Home", item: SITE_URL },
+      {
+        "@type": "ListItem",
+        position: 2,
+        name: "Account verwijderen",
+        item: PAGE_URL,
+      },
+    ],
+  };
+
+  const jsonLdOrganization = {
+    "@context": "https://schema.org",
+    "@type": "Organization",
+    "@id": `${SITE_URL}/#organization`,
+    name: "Thuiskapper.app",
+    url: SITE_URL,
+    contactPoint: [
+      {
+        "@type": "ContactPoint",
+        contactType: "customer support",
+        email: "info@thuiskapper.app",
+        availableLanguage: ["nl"],
+      },
+      {
+        "@type": "ContactPoint",
+        contactType: "privacy",
+        email: "privacy@thuiskapper.app",
+        availableLanguage: ["nl"],
+      },
+    ],
+  };
+
   if (status === "success") {
     return (
       <div className="min-h-screen bg-white flex items-center justify-center px-4">
+        {/* JSON-LD (SEO Schema) */}
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify([
+              jsonLdWebPage,
+              jsonLdBreadcrumbs,
+              jsonLdOrganization,
+            ]),
+          }}
+        />
+
         <div className="max-w-md w-full text-center">
           <div className="w-16 h-16 bg-emerald-100 rounded-full flex items-center justify-center mx-auto mb-6">
             <CheckCircle className="w-8 h-8 text-emerald-600" />
@@ -145,6 +226,18 @@ export default function AccountVerwijderen() {
 
   return (
     <div className="min-h-screen bg-white">
+      {/* JSON-LD (SEO Schema) */}
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify([
+            jsonLdWebPage,
+            jsonLdBreadcrumbs,
+            jsonLdOrganization,
+          ]),
+        }}
+      />
+
       <PageTop
         title="Account verwijderen"
         description="U kunt uw Thuiskapper-account zelf verwijderen binnen de applicatie. Op deze pagina leggen we uit waar u dit kunt doen en wat er daarna gebeurt."
@@ -152,7 +245,6 @@ export default function AccountVerwijderen() {
       />
 
       <div className="max-w-2xl mx-auto px-4 sm:px-6 py-8 sm:py-12">
-        {/* Optional: keep a subtle back link inside the white content area */}
         <Link
           href="/"
           className="inline-flex items-center gap-2 text-emerald-600 hover:text-emerald-700 mb-8 transition-colors"

@@ -1,8 +1,114 @@
+// app/privacy/page.tsx
+import type { Metadata } from "next";
 import PageTop from "@/components/PageTop";
+import Link from "next/link";
+
+const SITE_URL = "https://www.thuiskapper.app";
+const CANONICAL_PATH = "/privacy";
+const PAGE_URL = `${SITE_URL}${CANONICAL_PATH}`;
+
+const LAST_UPDATED_DISPLAY = "27 december 2025";
+const LAST_UPDATED_ISO = "2025-12-27";
+
+export const metadata: Metadata = {
+  title: "Privacybeleid | Thuiskapper.app",
+  description:
+    "Lees hoe Thuiskapper.app persoonsgegevens verwerkt, waarom we gegevens verwerken, met wie we delen en welke rechten u heeft onder de AVG.",
+  alternates: {
+    canonical: CANONICAL_PATH,
+  },
+  openGraph: {
+    title: "Privacybeleid | Thuiskapper.app",
+    description:
+      "Lees hoe Thuiskapper.app persoonsgegevens verwerkt, waarom we gegevens verwerken, met wie we delen en welke rechten u heeft onder de AVG.",
+    url: PAGE_URL,
+    siteName: "Thuiskapper.app",
+    type: "article",
+    locale: "nl_NL",
+  },
+  robots: {
+    index: true,
+    follow: true,
+  },
+};
 
 export default function Privacy() {
+  const jsonLdWebPage = {
+    "@context": "https://schema.org",
+    "@type": "WebPage",
+    "@id": `${PAGE_URL}#webpage`,
+    url: PAGE_URL,
+    name: "Privacybeleid | Thuiskapper.app",
+    description:
+      "Privacybeleid van Thuiskapper.app met uitleg over gegevensverwerking en rechten onder de AVG.",
+    inLanguage: "nl-NL",
+    isPartOf: {
+      "@type": "WebSite",
+      "@id": `${SITE_URL}/#website`,
+      url: SITE_URL,
+      name: "Thuiskapper.app",
+    },
+    about: {
+      "@type": "Organization",
+      "@id": `${SITE_URL}/#organization`,
+      name: "Thuiskapper.app",
+      url: SITE_URL,
+      email: "privacy@thuiskapper.app",
+    },
+    dateModified: LAST_UPDATED_ISO,
+    datePublished: LAST_UPDATED_ISO,
+  };
+
+  const jsonLdBreadcrumbs = {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    itemListElement: [
+      { "@type": "ListItem", position: 1, name: "Home", item: SITE_URL },
+      {
+        "@type": "ListItem",
+        position: 2,
+        name: "Privacybeleid",
+        item: PAGE_URL,
+      },
+    ],
+  };
+
+  const jsonLdOrganization = {
+    "@context": "https://schema.org",
+    "@type": "Organization",
+    "@id": `${SITE_URL}/#organization`,
+    name: "Thuiskapper.app",
+    url: SITE_URL,
+    contactPoint: [
+      {
+        "@type": "ContactPoint",
+        contactType: "customer support",
+        email: "info@thuiskapper.app",
+        availableLanguage: ["nl"],
+      },
+      {
+        "@type": "ContactPoint",
+        contactType: "privacy",
+        email: "privacy@thuiskapper.app",
+        availableLanguage: ["nl"],
+      },
+    ],
+  };
+
   return (
     <div className="min-h-screen bg-white">
+      {/* JSON-LD (SEO Schema) */}
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify([
+            jsonLdWebPage,
+            jsonLdBreadcrumbs,
+            jsonLdOrganization,
+          ]),
+        }}
+      />
+
       <PageTop
         title="Privacybeleid"
         description="Lees hoe Thuiskapper.app omgaat met persoonsgegevens, waarom we gegevens verwerken en welke rechten u heeft."
@@ -12,7 +118,7 @@ export default function Privacy() {
       <div className="max-w-4xl mx-auto px-4 sm:px-6 py-8 sm:py-12">
         <div className="prose prose-lg max-w-none">
           <p className="text-gray-600 mb-8">
-            <strong>Laatst bijgewerkt:</strong> 27 december 2025
+            <strong>Laatst bijgewerkt:</strong> {LAST_UPDATED_DISPLAY}
           </p>
 
           <section className="mb-10">
@@ -202,7 +308,8 @@ export default function Privacy() {
               <li>De prestaties van de app te optimaliseren</li>
             </ul>
             <p className="text-gray-700 mt-3">
-              U kunt cookies beheren via uw apparaatinstellingen.
+              U kunt cookies beheren via uw apparaatinstellingen. Lees ook onze{" "}
+              <Link href="/cookies">cookieverklaring</Link>.
             </p>
           </section>
 
@@ -247,9 +354,7 @@ export default function Privacy() {
               <p className="text-gray-700 mb-2">
                 E-mail: privacy@thuiskapper.app
               </p>
-              <p className="text-gray-700">
-                Website: https://www.thuiskapper.app
-              </p>
+              <p className="text-gray-700">Website: {SITE_URL}</p>
             </div>
           </section>
 

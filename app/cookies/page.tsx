@@ -1,9 +1,9 @@
 // app/cookies/page.tsx
 "use client";
 
-import PageTop from "@/components/PageTop";
 import { useMemo, useState } from "react";
 import Link from "next/link";
+import PageTop from "@/components/PageTop";
 import {
   Cookie,
   ShieldCheck,
@@ -19,7 +19,11 @@ import {
 
 type ConsentLevel = "necessary" | "analytics" | "marketing";
 
+const SITE_URL = "https://www.thuiskapper.app";
+const CANONICAL_PATH = "/cookies";
+const PAGE_URL = `${SITE_URL}${CANONICAL_PATH}`;
 const LAST_UPDATED = "9 januari 2026";
+const LAST_UPDATED_ISO = "2026-01-09";
 
 type CookieCategory = {
   id: ConsentLevel;
@@ -93,6 +97,69 @@ export default function CookiesPage() {
     return parts.join(", ");
   }, [consent.analytics, consent.marketing]);
 
+  // JSON-LD schema (static; no user-specific data)
+  const jsonLdWebPage = {
+    "@context": "https://schema.org",
+    "@type": "WebPage",
+    "@id": `${PAGE_URL}#webpage`,
+    url: PAGE_URL,
+    name: "Cookieverklaring | Thuiskapper.app",
+    description:
+      "Cookieverklaring van Thuiskapper.app met uitleg over cookiecategorieën en het beheren van voorkeuren.",
+    inLanguage: "nl-NL",
+    isPartOf: {
+      "@type": "WebSite",
+      "@id": `${SITE_URL}/#website`,
+      url: SITE_URL,
+      name: "Thuiskapper.app",
+    },
+    about: {
+      "@type": "Organization",
+      "@id": `${SITE_URL}/#organization`,
+      name: "Thuiskapper.app",
+      url: SITE_URL,
+      email: "info@thuiskapper.app",
+    },
+    dateModified: LAST_UPDATED_ISO,
+    datePublished: LAST_UPDATED_ISO,
+  };
+
+  const jsonLdBreadcrumbs = {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    itemListElement: [
+      { "@type": "ListItem", position: 1, name: "Home", item: SITE_URL },
+      {
+        "@type": "ListItem",
+        position: 2,
+        name: "Cookieverklaring",
+        item: PAGE_URL,
+      },
+    ],
+  };
+
+  const jsonLdOrganization = {
+    "@context": "https://schema.org",
+    "@type": "Organization",
+    "@id": `${SITE_URL}/#organization`,
+    name: "Thuiskapper.app",
+    url: SITE_URL,
+    contactPoint: [
+      {
+        "@type": "ContactPoint",
+        contactType: "customer support",
+        email: "info@thuiskapper.app",
+        availableLanguage: ["nl"],
+      },
+      {
+        "@type": "ContactPoint",
+        contactType: "privacy",
+        email: "privacy@thuiskapper.app",
+        availableLanguage: ["nl"],
+      },
+    ],
+  };
+
   const savePreferences = async () => {
     setStatus("saving");
     try {
@@ -129,6 +196,18 @@ export default function CookiesPage() {
 
   return (
     <div className="min-h-screen bg-white">
+      {/* JSON-LD (SEO Schema) */}
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify([
+            jsonLdWebPage,
+            jsonLdBreadcrumbs,
+            jsonLdOrganization,
+          ]),
+        }}
+      />
+
       <PageTop
         title="Cookieverklaring"
         description="Ontdek welke cookies en vergelijkbare technologieën we gebruiken, waarom we dat doen en hoe u uw voorkeuren beheert."
