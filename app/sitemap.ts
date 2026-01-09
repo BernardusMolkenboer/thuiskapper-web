@@ -12,6 +12,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     "/cookies",
     "/account-verwijderen",
     "/algemene-voorwaarden",
+    "/veelgestelde-vragen",
   ];
 
   return routes.map((path) => ({

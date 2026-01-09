@@ -81,6 +81,105 @@ type LayoutConfig<Route extends LayoutRoutes = LayoutRoutes> = {
   type __Unused = __Check
 }
 
+// Validate ../../../app/thuiskapper-almere/page.tsx
+{
+  type __IsExpected<Specific extends AppPageConfig<"/thuiskapper-almere">> = Specific
+  const handler = {} as typeof import("../../../app/thuiskapper-almere/page.js")
+  type __Check = __IsExpected<typeof handler>
+  // @ts-ignore
+  type __Unused = __Check
+}
+
+// Validate ../../../app/thuiskapper-amsterdam/page.tsx
+{
+  type __IsExpected<Specific extends AppPageConfig<"/thuiskapper-amsterdam">> = Specific
+  const handler = {} as typeof import("../../../app/thuiskapper-amsterdam/page.js")
+  type __Check = __IsExpected<typeof handler>
+  // @ts-ignore
+  type __Unused = __Check
+}
+
+// Validate ../../../app/thuiskapper-breda/page.tsx
+{
+  type __IsExpected<Specific extends AppPageConfig<"/thuiskapper-breda">> = Specific
+  const handler = {} as typeof import("../../../app/thuiskapper-breda/page.js")
+  type __Check = __IsExpected<typeof handler>
+  // @ts-ignore
+  type __Unused = __Check
+}
+
+// Validate ../../../app/thuiskapper-den-haag/page.tsx
+{
+  type __IsExpected<Specific extends AppPageConfig<"/thuiskapper-den-haag">> = Specific
+  const handler = {} as typeof import("../../../app/thuiskapper-den-haag/page.js")
+  type __Check = __IsExpected<typeof handler>
+  // @ts-ignore
+  type __Unused = __Check
+}
+
+// Validate ../../../app/thuiskapper-eindhoven/page.tsx
+{
+  type __IsExpected<Specific extends AppPageConfig<"/thuiskapper-eindhoven">> = Specific
+  const handler = {} as typeof import("../../../app/thuiskapper-eindhoven/page.js")
+  type __Check = __IsExpected<typeof handler>
+  // @ts-ignore
+  type __Unused = __Check
+}
+
+// Validate ../../../app/thuiskapper-groningen/page.tsx
+{
+  type __IsExpected<Specific extends AppPageConfig<"/thuiskapper-groningen">> = Specific
+  const handler = {} as typeof import("../../../app/thuiskapper-groningen/page.js")
+  type __Check = __IsExpected<typeof handler>
+  // @ts-ignore
+  type __Unused = __Check
+}
+
+// Validate ../../../app/thuiskapper-nijmegen/page.tsx
+{
+  type __IsExpected<Specific extends AppPageConfig<"/thuiskapper-nijmegen">> = Specific
+  const handler = {} as typeof import("../../../app/thuiskapper-nijmegen/page.js")
+  type __Check = __IsExpected<typeof handler>
+  // @ts-ignore
+  type __Unused = __Check
+}
+
+// Validate ../../../app/thuiskapper-rotterdam/page.tsx
+{
+  type __IsExpected<Specific extends AppPageConfig<"/thuiskapper-rotterdam">> = Specific
+  const handler = {} as typeof import("../../../app/thuiskapper-rotterdam/page.js")
+  type __Check = __IsExpected<typeof handler>
+  // @ts-ignore
+  type __Unused = __Check
+}
+
+// Validate ../../../app/thuiskapper-tilburg/page.tsx
+{
+  type __IsExpected<Specific extends AppPageConfig<"/thuiskapper-tilburg">> = Specific
+  const handler = {} as typeof import("../../../app/thuiskapper-tilburg/page.js")
+  type __Check = __IsExpected<typeof handler>
+  // @ts-ignore
+  type __Unused = __Check
+}
+
+// Validate ../../../app/thuiskapper-utrecht/page.tsx
+{
+  type __IsExpected<Specific extends AppPageConfig<"/thuiskapper-utrecht">> = Specific
+  const handler = {} as typeof import("../../../app/thuiskapper-utrecht/page.js")
+  type __Check = __IsExpected<typeof handler>
+  // @ts-ignore
+  type __Unused = __Check
+}
+
+// Validate ../../../app/vraag-en-antwoord/page.tsx
+{
+  type __IsExpected<Specific extends AppPageConfig<"/vraag-en-antwoord">> = Specific
+  const handler = {} as typeof import("../../../app/vraag-en-antwoord/page.js")
+  type __Check = __IsExpected<typeof handler>
+  // @ts-ignore
+  type __Unused = __Check
+}
+
 
 
 

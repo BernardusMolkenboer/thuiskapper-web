@@ -1,7 +1,10 @@
 {
+  "/_not-found/page": "app/_not-found/page.js",
   "/account-verwijderen/page": "app/account-verwijderen/page.js",
   "/algemene-voorwaarden/page": "app/algemene-voorwaarden/page.js",
   "/cookies/page": "app/cookies/page.js",
   "/page": "app/page.js",
-  "/privacy/page": "app/privacy/page.js"
+  "/privacy/page": "app/privacy/page.js",
+  "/thuiskapper-amsterdam/page": "app/thuiskapper-amsterdam/page.js",
+  "/vraag-en-antwoord/page": "app/vraag-en-antwoord/page.js"
 }
