@@ -1,22 +1,15 @@
-import Link from "next/link";
-import { ArrowLeft } from "lucide-react";
+import PageTop from "@/components/PageTop";
 
 export default function Privacy() {
   return (
     <div className="min-h-screen bg-white">
+      <PageTop
+        title="Privacybeleid"
+        description="Lees hoe Thuiskapper.app omgaat met persoonsgegevens, waarom we gegevens verwerken en welke rechten u heeft."
+        crumbs={[{ label: "Privacybeleid" }]}
+      />
+
       <div className="max-w-4xl mx-auto px-4 sm:px-6 py-8 sm:py-12">
-        <Link
-          href="/"
-          className="inline-flex items-center gap-2 text-emerald-600 hover:text-emerald-700 mb-8 transition-colors"
-        >
-          <ArrowLeft className="w-4 h-4" />
-          Terug naar home
-        </Link>
-
-        <h1 className="text-3xl sm:text-4xl font-bold text-gray-900 mb-8">
-          Privacybeleid
-        </h1>
-
         <div className="prose prose-lg max-w-none">
           <p className="text-gray-600 mb-8">
             <strong>Laatst bijgewerkt:</strong> 27 december 2025

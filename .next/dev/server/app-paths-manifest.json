@@ -1,4 +1,6 @@
 {
+  "/account-verwijderen/page": "app/account-verwijderen/page.js",
+  "/cookies/page": "app/cookies/page.js",
   "/page": "app/page.js",
-  "/sitemap.xml/route": "app/sitemap.xml/route.js"
+  "/privacy/page": "app/privacy/page.js"
 }

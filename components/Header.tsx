@@ -1,8 +1,8 @@
-'use client';
+"use client";
 
-import { useState, useEffect } from 'react';
-import { Menu, X, ArrowRight } from 'lucide-react';
-import Image from 'next/image';
+import { useState, useEffect } from "react";
+import { Menu, X, ArrowRight } from "lucide-react";
+import Image from "next/image";
 
 export default function Header() {
   const [isScrolled, setIsScrolled] = useState(false);
@@ -12,30 +12,36 @@ export default function Header() {
     const handleScroll = () => {
       setIsScrolled(window.scrollY > 20);
     };
-    window.addEventListener('scroll', handleScroll);
-    return () => window.removeEventListener('scroll', handleScroll);
+    window.addEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
   const navLinks = [
-    { href: '#hoe-werkt-het', label: 'Hoe werkt het' },
-    { href: '#voordelen', label: 'Voordelen' },
-    { href: '#reviews', label: 'Reviews' },
-    { href: '#kappers', label: 'Voor Kappers' },
+    { href: "#hoe-werkt-het", label: "Hoe werkt het" },
+    { href: "#voordelen", label: "Voordelen" },
+    { href: "#reviews", label: "Reviews" },
+    { href: "#kappers", label: "Voor Kappers" },
   ];
 
   return (
     <header
       className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${
         isScrolled
-          ? 'bg-white/80 backdrop-blur-xl shadow-lg shadow-black/5 py-3'
-          : 'bg-transparent py-5'
+          ? "bg-white/80 backdrop-blur-xl shadow-lg shadow-black/5 py-3"
+          : "bg-transparent py-5"
       }`}
     >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex items-center justify-between">
           <a href="#" className="flex items-center gap-3 group">
             <div className="relative">
-              <div className={`absolute -inset-1 rounded-xl transition-opacity duration-300 ${isScrolled ? 'bg-brand-100 opacity-0' : 'bg-white/20 opacity-100'}`} />
+              <div
+                className={`absolute -inset-1 rounded-xl transition-opacity duration-300 ${
+                  isScrolled
+                    ? "bg-brand-100 opacity-0"
+                    : "bg-white/20 opacity-100"
+                }`}
+              />
               <Image
                 src="/favicon.png"
                 alt="Thuiskapper.app"
@@ -46,7 +52,7 @@ export default function Header() {
             </div>
             <span
               className={`font-bold text-xl transition-colors duration-300 ${
-                isScrolled ? 'text-gray-900' : 'text-white'
+                isScrolled ? "text-gray-900" : "text-white"
               }`}
             >
               Thuiskapper<span className="text-brand-400">.app</span>
@@ -60,8 +66,8 @@ export default function Header() {
                 href={link.href}
                 className={`relative px-4 py-2 font-medium transition-all duration-300 rounded-lg group ${
                   isScrolled
-                    ? 'text-gray-600 hover:text-brand-600 hover:bg-brand-50'
-                    : 'text-white/80 hover:text-white hover:bg-white/10'
+                    ? "text-gray-600 hover:text-brand-600 hover:bg-brand-50"
+                    : "text-white/80 hover:text-white hover:bg-white/10"
                 }`}
               >
                 {link.label}
@@ -81,8 +87,8 @@ export default function Header() {
             onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
             className={`md:hidden p-2.5 rounded-xl transition-all duration-300 ${
               isScrolled
-                ? 'text-gray-900 hover:bg-gray-100'
-                : 'text-white hover:bg-white/10'
+                ? "text-gray-900 hover:bg-gray-100"
+                : "text-white hover:bg-white/10"
             }`}
             aria-label="Toggle menu"
           >
@@ -92,10 +98,12 @@ export default function Header() {
 
         <div
           className={`md:hidden overflow-hidden transition-all duration-500 ease-in-out ${
-            isMobileMenuOpen ? 'max-h-96 opacity-100 mt-4' : 'max-h-0 opacity-0'
+            isMobileMenuOpen ? "max-h-96 opacity-100 mt-4" : "max-h-0 opacity-0"
           }`}
         >
-          <nav className={`rounded-2xl p-4 ${isScrolled ? 'bg-gray-50' : 'glass'}`}>
+          <nav
+            className={`rounded-2xl p-4 ${isScrolled ? "bg-gray-50" : "glass"}`}
+          >
             <div className="flex flex-col gap-1">
               {navLinks.map((link) => (
                 <a
@@ -104,8 +112,8 @@ export default function Header() {
                   onClick={() => setIsMobileMenuOpen(false)}
                   className={`font-medium py-3 px-4 rounded-xl transition-all duration-300 ${
                     isScrolled
-                      ? 'text-gray-700 hover:bg-brand-50 hover:text-brand-600'
-                      : 'text-white hover:bg-white/10'
+                      ? "text-gray-700 hover:bg-brand-50 hover:text-brand-600"
+                      : "text-white hover:bg-white/10"
                   }`}
                 >
                   {link.label}

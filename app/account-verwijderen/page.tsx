@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import Link from "next/link";
+import PageTop from "@/components/PageTop";
 import {
   ArrowLeft,
   CheckCircle,
@@ -83,9 +84,6 @@ export default function AccountVerwijderen() {
       return;
     }
 
-    // No Supabase / no backend request:
-    // This page only informs users that deletion can be done inside the app.
-    // We still show a success state to confirm the user read the instructions.
     await new Promise((r) => setTimeout(r, 600));
     setStatus("success");
   };
@@ -147,7 +145,14 @@ export default function AccountVerwijderen() {
 
   return (
     <div className="min-h-screen bg-white">
+      <PageTop
+        title="Account verwijderen"
+        description="U kunt uw Thuiskapper-account zelf verwijderen binnen de applicatie. Op deze pagina leggen we uit waar u dit kunt doen en wat er daarna gebeurt."
+        crumbs={[{ label: "Account verwijderen" }]}
+      />
+
       <div className="max-w-2xl mx-auto px-4 sm:px-6 py-8 sm:py-12">
+        {/* Optional: keep a subtle back link inside the white content area */}
         <Link
           href="/"
           className="inline-flex items-center gap-2 text-emerald-600 hover:text-emerald-700 mb-8 transition-colors"
@@ -155,15 +160,6 @@ export default function AccountVerwijderen() {
           <ArrowLeft className="w-4 h-4" />
           Terug naar home
         </Link>
-
-        <h1 className="text-3xl sm:text-4xl font-bold text-gray-900 mb-4">
-          Account verwijderen
-        </h1>
-        <p className="text-gray-600 mb-8 text-lg">
-          U kunt uw Thuiskapper-account zelf verwijderen binnen de applicatie.
-          Op deze pagina leggen we uit waar u dit kunt doen en wat er daarna
-          gebeurt.
-        </p>
 
         <div className="bg-emerald-50 border border-emerald-200 rounded-lg p-5 mb-8">
           <div className="flex items-start gap-3">
