@@ -13,7 +13,9 @@ export const metadata: Metadata = {
   description:
     "Vind direct een professionele kapper die naar je toe komt. Salon-kwaliteit in je eigen huiskamer.",
   icons: {
-    icon: "/favicon.png",
+    icon: "/favicon.ico",
+    shortcut: "/favicon.ico",
+    apple: "/apple-touch-icon.png",
   },
 };
 
